@@ -1,0 +1,5 @@
+---
+ - name: restart lbaas
+   service:
+     name: haproxy
+     state: restarted

@@ -1,0 +1,13 @@
+---
+ - name: Install HAPorxy
+   yum:
+     name: "{{ apps }}"
+     state: latest
+
+ - name: Configure HAProxy to load-balance
+   template:
+     src: haproxy.cfg.j2
+     dest: /etc/haproxy/haproxy.cfg
+     mode: 0644
+   notify: restart lbaas 
+

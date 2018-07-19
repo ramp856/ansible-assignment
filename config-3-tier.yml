@@ -1,0 +1,15 @@
+---
+ - host: jumpbox
+   become: yes
+   gather_facts: flase
+ 
+   roles:
+   - osp_facts
+   
+ - name: LBaaS setup
+   hosts: frontends
+   become: yes
+   gather_facts: True
+   roles:
+   - base-config
+   - lbaas
