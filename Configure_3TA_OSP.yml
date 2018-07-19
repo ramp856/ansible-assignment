@@ -1,0 +1,40 @@
+---
+ - host: jumpbox
+   become: yes
+   gather_facts: flase
+ 
+   roles:
+   - osp_facts
+   
+ - name: LBaaS setup
+   hosts: frontends
+   become: yes
+   gather_facts: True
+   roles:
+   - base-config
+   - lbaas
+
+ - name: setup app servers
+   hosts: apps
+   become: yes
+   gather_facts: true
+   roles: 
+   - base-config
+   - 3-Tier-App
+
+ - name: Setup DB server
+   hosts: appsdbs
+   become: yes
+   gather_facts: true
+   roles: 
+   - base-config
+   - postgresql
+ 
+ - name: smoke tests
+   hosts: frontends
+   tasks: 
+   - uri:
+       url: http://127.0.0.1
+       return_content: yes
+     register: frontend_result
+     failed_when: "'Ansible Deployed Tomcat' not in frontend_result.content"
