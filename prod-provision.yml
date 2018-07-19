@@ -1,0 +1,30 @@
+---
+ - name: Provision Prod Environment
+   hosts: jumpbox
+   become: yes
+   gather_facts: true
+
+ - tasks:
+   - name: Create bin directory
+     file:
+       path: "{{ ansible_env.HOME }}/bin"
+       state: directory
+       mode: 0755
+
+ - name: Download the scripts from OPentlc
+   get_url:
+     url: http://www.opentlc.com/download/ansible_bootcamp/scripts/{{ item }}
+     dest: "{{ ansible_env.HOME }}/{{ item }}"
+     mode: 0755
+   with_items:
+     - common.sh
+     - order_svc.sh
+     - jq-linux64
+
+ - name: Change order_svc.sh +x
+   shell: "chmod +x {{ ansible_env.HOME }}/order_svc.sh {{ ansible_env.HOME }}/bin/jq"
+
+ - name: Create credentials.rc file
+   template:
+     src: templates/credentials.rc
+     dest: "{{ ansible_env.HOME }}/credentials.rc"
