@@ -1,0 +1,6 @@
+---
+# handlers file for 3-Tier-App
+ - name: tomcat service restart
+   service: 
+     name: tomcat
+     state: restarted

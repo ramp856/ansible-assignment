@@ -1,0 +1,4 @@
+---
+# vars file for 3-Tier-App
+ apps: tomcat
+ tomcat_web_root: /usr/share/tomcat/webapps/ROOT
