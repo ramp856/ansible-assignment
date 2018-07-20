@@ -1,18 +1,18 @@
 ---
 - name: Clean up Front Ends
-  hosts: tag_AnsibleGroup_frontends
+  hosts: frontends
   become: true
   roles:
-    - clean-three-tier
+    - clean-3-tier
 
 - name: Clean up App
-  hosts: tag_AnsibleGroup_apps
+  hosts: apps
   become: true
   roles:
-    - clean-three-tier
+    - clean-3-tier
 
 - name: Clean up App DBs
-  hosts: tag_AnsibleGroup_appdbs
+  hosts: appdbs
   become: true
   roles:
-    - clean-three-tier
+    - clean-3-tier

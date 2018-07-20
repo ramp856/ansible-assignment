@@ -1,40 +1,42 @@
 ---
- - hosts: jumpbox
-   become: yes
-   gather_facts: flase
- 
-   roles:
-   - osp_facts
-   
- - name: LBaaS setup
-   hosts: frontends
-   become: yes
-   gather_facts: True
-   roles:
-   - base-config
-   - lbaas
+- name: Gather Facts
+  hosts: jumpbox
+  become: yes
+  tasks:
+  - name: Gather facts
+    include_role: 
+       name: osp-facts
+    tags:
+     - get_openstack_vm_inventory
 
- - name: setup app servers
-   hosts: apps
-   become: yes
-   gather_facts: true
-   roles: 
-   - base-config
-   - 3-Tier-App
+- name: setup load-balancer tier
+  hosts: frontends
+  become: yes
+  gather_facts: true
+  roles:
+    - {name: base-configs, tags: base-configs}
+    - {name: lbaas, tags: [lbs, haproxy]}
 
- - name: Setup DB server
-   hosts: appsdbs
-   become: yes
-   gather_facts: true
-   roles: 
-   - base-config
-   - postgresql
- 
- - name: smoke tests
-   hosts: frontends
-   tasks: 
-   - uri:
-       url: http://127.0.0.1
-       return_content: yes
-     register: frontend_result
-     failed_when: "'Ansible Deployed Tomcat' not in frontend_result.content"
+- name: setup app tier
+  hosts: apps
+  become: yes
+  gather_facts: true
+  roles:
+    - {name: base-configs, tags: base-configs}
+    - {name: 3-Tier-App, tags: [apps, tomcat]}
+
+- name: setup database tier
+  hosts: appdbs
+  become: yes
+  gather_facts: true
+  roles:
+    - {name: base-configs, tags: base-configs}
+    - {name: postgresql, tags: [dbs, postgres]}
+
+- name: smoke testing
+  hosts: frontends
+  tasks:
+  - uri:
+      url: http://127.0.01
+      return_content: yes
+    register: frontend_working   

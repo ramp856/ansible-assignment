@@ -1,0 +1,17 @@
+---
+- name: Gather Facts
+  hosts: jumpbox
+  become: yes
+  tasks:
+  - name: Gather facts
+    include_role: 
+       name: osp-facts
+    tags:
+     - get_openstack_vm_inventory
+
+- name: smoke test
+  hosts: frontends
+  tasks:
+  - uri:
+      url: http://127.0.0.1
+      return_content: yes

@@ -1,11 +1,7 @@
 ---
 # Initial, common, system setup steps
 - name: enable sudo without tty for some ansible commands
-  replace:
-    path: /etc/sudoers
-    regexp: '^Defaults\s*requiretty'
-    replace: 'Defaults  !requiretty'
-    backup: yes
+  include: fix-tty.yml
 
 - name: enable repos
   template:
@@ -19,4 +15,4 @@
     state: latest
   with_items:
     - httpie
-- python-pip
+    - python-pip

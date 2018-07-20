@@ -5,8 +5,8 @@
      state: latest
 
  - name: Configure HAProxy to load-balance
-   template:
-     src: haproxy.cfg.j2
+   templates:
+     src: templates/haproxy.cfg.j2
      dest: /etc/haproxy/haproxy.cfg
      mode: 0644
    notify: restart lbaas 

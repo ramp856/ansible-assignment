@@ -2,7 +2,7 @@
 # tasks file for 3-Tier-App
  - name: install {{ apps }}
    yum: 
-     name: "{{ apps }}
+     name: "{{ apps }}"
      state: latest
 
  - name: Create default Directory for TOMCAT
@@ -11,8 +11,8 @@
      state: directory
 
  - name: Copy the template for tomcat
-   tepmlate:
-     src: template-html.j2
+   template:
+     src: templates/template-html.j2
      dest: "{{ tomcat_web_root }}/index.html"
      mode: 0644
    notify: tomcat service restart
