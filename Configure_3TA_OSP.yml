@@ -1,6 +1,6 @@
 ---
 - name: Gather Facts
-  hosts: jumpbox
+  hosts: jumpbox 
   become: yes
   tasks:
   - name: Gather facts
@@ -33,10 +33,10 @@
     - {name: base-configs, tags: base-configs}
     - {name: postgresql, tags: [dbs, postgres]}
 
-- name: smoke testing
+- name: smoke test
   hosts: frontends
   tasks:
   - uri:
-      url: http://127.0.01
+      url: http://127.0.0.1 
       return_content: yes
-    register: frontend_working   
+      register: frontend_result

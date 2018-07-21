@@ -1,9 +1,8 @@
 --- 
-  become: true
+- become: yes
   become_user: root
   tasks: 
-    - name: "disable requiretty in /etc/sudoers"
-      replace: 
-        regexp: "^Defaults*requiretty$" 
-        replace: "# Defaults    !requiretty" 
-        dest: /etc/sudoers
+    replace: 
+      regexp: "^Defaults*requiretty$" 
+      replace: "# Defaults    !requiretty" 
+      dest: /etc/sudoers

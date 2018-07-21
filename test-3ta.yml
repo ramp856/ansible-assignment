@@ -1,17 +1,22 @@
 ---
 - name: Gather Facts
   hosts: jumpbox
-  become: yes
+  become: ture
   tasks:
   - name: Gather facts
-    include_role: 
+    include_role:
        name: osp-facts
     tags:
      - get_openstack_vm_inventory
 
-- name: smoke test
+- name: setup load-balancer tier
   hosts: frontends
-  tasks:
-  - uri:
-      url: http://127.0.0.1
-      return_content: yes
+  become: true
+  gather_facts: true
+  roles:
+    - {name: base-configs, tags: base-configs}
+    - {name: lbaas, tags: [lbs, haproxy]}
+
+
+
+
