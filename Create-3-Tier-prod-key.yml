@@ -2,7 +2,6 @@
 - hosts: tag_AnsibleGroup_bastions
   name: Fetch Private Keys
   gather_facts: true
-  include: group-vars/all.yml
   become: yes
 
   tasks:
@@ -20,9 +19,9 @@
       name: Three_Tier_Prod_Key
       state: present
       organization: Default
-      tower_host: "{{ tower_node }}.{{ tower_guid }}.{{ tower_domain_path }}"
-      tower_username: "{{ tower_username }}"
-      tower_password: "{{ tower_password }}"
+      tower_host: tower1.9748.example.opentlc.com
+      tower_username: admin
+      tower_password: r3dh4t1!
       kind: ssh
       username: ec2-user
       ssh_key_data: "/root/.ssh/{{ hostvars[inventory_hostname]['ec2_tag_Project'] | regex_replace('three-tier-app-','') }}key.pem"
