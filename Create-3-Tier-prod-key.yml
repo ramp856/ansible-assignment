@@ -16,11 +16,6 @@
   - name: Inject keys into ansible Tower
     tower_credentials:
       name: Three_Tier_Prod_Key
-<<<<<<< HEAD
-      Organization: MitziCom 
-=======
-      Organization: MitziCom
->>>>>>> b6e27dff3409afc0c66c57466714779b3a092b6f
       state: present
       tower_host: "{{ tower_node }}.{{ tower_guid }}.{{ tower_domain_path }}"
       tower_username: "{{ tower_username }}"
@@ -28,8 +23,3 @@
       kind: ssh
       username: "{{ three_tier_user }}"
       ssh_key_data: "/root/.ssh/{{ hostvars[inventory_hostname]['ec2_tag_Project'] | regex_replace('three-tier-app-','') }}key.pem"
-<<<<<<< HEAD
-
-    
-=======
->>>>>>> b6e27dff3409afc0c66c57466714779b3a092b6f
