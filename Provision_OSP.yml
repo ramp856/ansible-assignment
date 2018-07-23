@@ -1,6 +1,6 @@
 ---
 
-- hosts: jumpbox
+- hosts: bastion
   name: Provision Openstack Instances
   become: yes
   roles:
