@@ -1,6 +1,6 @@
 ---
 - name: Clean up OpenStack VMs
-  hosts: jumpbox
+  hosts: jumpbox, bastion
   become: yes
   gather_facts: true
   
