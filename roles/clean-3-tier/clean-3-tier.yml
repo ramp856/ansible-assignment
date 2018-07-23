@@ -1,0 +1,33 @@
+---
+ - name: Destroy the 3-tier-apps
+   replace:
+     path: /etc/sudoers
+     regexp: 'Defaults\s*!requiretty'
+     replace: '^Defaults requiretty'
+     backup: yes
+
+ - name: Disable repository
+   template:
+     src: /dev/null/
+     dest: /etc/yum.repos.d/open_three-tier-app.repo
+
+ - name: Remove the tools and packages
+   yum:
+     name: "{{ item }}"
+     state: absent
+   with_items:
+     - httpie
+     - python-pip
+     - haproxy
+     - tomcat
+     - postgresql-server
+
+ - name: remove Tomcat directory and files
+   file:
+     path: /usr/share/tomcat/webapps
+     state: absent
+
+ - name: Remove haproxy config
+   file:
+     path: /etc/haproxy/haproxy.cfg
+     state: absent

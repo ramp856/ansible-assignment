@@ -1,0 +1,42 @@
+---
+- name: Gather Facts
+  hosts: jumpbox 
+  become: yes
+  tasks:
+  - name: Gather facts
+    include_role: 
+       name: osp-facts
+    tags:
+     - get_openstack_vm_inventory
+
+- name: setup load-balancer tier
+  hosts: frontends
+  become: yes
+  gather_facts: true
+  roles:
+    - {name: base-configs, tags: base-configs}
+    - {name: lbaas, tags: [lbs, haproxy]}
+
+- name: setup app tier
+  hosts: apps
+  become: yes
+  gather_facts: true
+  roles:
+    - {name: base-configs, tags: base-configs}
+    - {name: 3-Tier-App, tags: [apps, tomcat]}
+
+- name: setup database tier
+  hosts: appdbs
+  become: yes
+  gather_facts: true
+  roles:
+    - {name: base-configs, tags: base-configs}
+    - {name: postgresql, tags: [dbs, postgres]}
+
+- name: smoke test
+  hosts: frontends
+  tasks:
+  - uri:
+      url: http://127.0.0.1 
+      return_content: yes
+      register: frontend_result
