@@ -1,6 +1,6 @@
 ---
  - name: Remove Openstack machines
-   hosts: jumpbox
+   hosts: bastion
    become: yes
 
    tasks: 
