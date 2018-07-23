@@ -1,6 +1,7 @@
 ---
 - hosts: tag_AnsibleGroup_bastions
   name: Fetch Private Keys
+  gather_facts: true
   become: yes
 
   tasks:
