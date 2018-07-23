@@ -1,0 +1,23 @@
+---
+- name: Clean up OpenStack VMs
+  hosts: bastion
+  become: yes
+  gather_facts: true
+  
+- name: Clean up Front Ends
+  hosts: frontends
+  become: true
+  roles:
+    - clean-3-tier
+
+- name: Clean up App
+  hosts: apps
+  become: true
+  roles:
+    - clean-3-tier
+
+- name: Clean up App DBs
+  hosts: appdbs
+  become: true
+  roles:
+    - clean-3-tier
