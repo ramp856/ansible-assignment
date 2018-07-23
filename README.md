@@ -140,8 +140,8 @@ Create new Job Template, i.e. Clean_Up_3_Tier_App_Prod with the following settin
     Credential: Three_Tier_Prod_Key
     Verbosity: 2
 
-Create a new workflow job template, i.e. Ansible_CICD and update the workflow editor as follows: 3-Tier-APP-QA-Prod
+Create a new workflow job template, i.e. Ansible_CICD and update the workflow editor as follows: 3-Tier-APP-QA-Prod:
 Find the attached ScreenShot in the repo
 
-Result Verification
+Result Verification:
 Find the attached Screenshot in the repo
