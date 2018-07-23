@@ -1,0 +1,32 @@
+---
+- name: Setup LBaaS
+  hosts: tag_AnsibleGroup_frontends
+  become: yes
+  gather_facts: true
+  roles:
+    - {name: base-configs, tags: base-configs}
+    - {name: lbaas, tags: [lbs, haproxy]}
+
+- name: setup applications
+  hosts: tag_AnsibleGroup_apps
+  become: yes
+  gather_facts: true
+  roles:
+    - {name: base-configs, tags: base-configs}
+    - {name: 3-Tier-App, tags: apps, tomcat}
+
+- name: setup DB
+  hosts: tag_AnsibleGroup_appdbs
+  become: yes
+  gather_facts: true
+  roles:
+    - {name: base-configs, tags: base-configs}
+    - {name: postgresql, tags: [dbs, postgresql]}
+
+- name: smoke test
+  hosts: tag_AnsibleGroup_frontends
+  tasks:
+  - uri:
+      url: http://127.0.0.1
+      return_content: yes
+    register: frontend_results
