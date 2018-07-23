@@ -4,7 +4,7 @@
   name: Provision Openstack Instances
   become: yes
   roles:
-     - osp_image
+     - osp-image
      - osp-network
      - osp-keypair
      - osp-securitygroup
