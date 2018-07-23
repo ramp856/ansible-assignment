@@ -18,6 +18,7 @@
     tower_credential:
       name: Three_Tier_Prod_Key
       state: present
+      organization: Default
       tower_host: "{{ tower_node }}.{{ tower_guid }}.{{ tower_domain_path }}"
       tower_username: "{{ tower_username }}"
       tower_password: "{{ tower_password }}"
