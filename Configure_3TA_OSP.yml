@@ -1,16 +1,6 @@
 ---
-- name: Gather Facts
-  hosts: jumpbox 
-  become: yes
-  tasks:
-  - name: Gather facts
-    include_role: 
-       name: osp-facts
-    tags:
-     - get_openstack_vm_inventory
-
 - name: setup load-balancer tier
-  hosts: frontends
+  hosts: tag_AnsibleGroup_frontends
   become: yes
   gather_facts: true
   roles:
@@ -18,7 +8,7 @@
     - {name: lbaas, tags: [lbs, haproxy]}
 
 - name: setup app tier
-  hosts: apps
+  hosts: tag_AnsibleGroup_apps
   become: yes
   gather_facts: true
   roles:
@@ -26,7 +16,7 @@
     - {name: 3-Tier-App, tags: [apps, tomcat]}
 
 - name: setup database tier
-  hosts: appdbs
+  hosts: tag_AnsibleGroup_appdbs
   become: yes
   gather_facts: true
   roles:
@@ -34,7 +24,7 @@
     - {name: postgresql, tags: [dbs, postgres]}
 
 - name: smoke test
-  hosts: frontends
+  hosts: tag_AnsibleGroup_frontends
   tasks:
   - uri:
       url: http://127.0.0.1 
