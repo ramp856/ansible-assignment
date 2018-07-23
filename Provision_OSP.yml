@@ -4,7 +4,6 @@
   name: Provision Openstack Instances
   become: yes
   roles:
-     - jumpbox
      - osp_image
      - osp-network
      - osp-keypair
