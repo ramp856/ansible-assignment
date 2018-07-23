@@ -15,7 +15,7 @@
       name: ansible-tower-cli
 
   - name: Inject keys into ansible Tower
-    tower_credentials:
+    tower_credential:
       name: Three_Tier_Prod_Key
       state: present
       tower_host: "{{ tower_node }}.{{ tower_guid }}.{{ tower_domain_path }}"
