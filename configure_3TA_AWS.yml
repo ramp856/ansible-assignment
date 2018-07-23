@@ -1,9 +1,17 @@
 ---
+<<<<<<< HEAD
 - name: Setup LBaaS 
   hosts: tag_AnsibleGroup_frontends
   become: yes
   gather_facts: true
   roles: 
+=======
+- name: Setup LBaaS
+  hosts: tag_AnsibleGroup_frontends
+  become: yes
+  gather_facts: true
+  roles:
+>>>>>>> b6e27dff3409afc0c66c57466714779b3a092b6f
     - {name: base-configs, tags: base-configs}
     - {name: lbaas, tags: [lbs, haproxy]}
 
