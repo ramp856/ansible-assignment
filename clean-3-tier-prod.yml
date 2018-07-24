@@ -15,4 +15,4 @@
   hosts: tag_AnsibleGroup_appdbs
   become: true
   roles:
-- clean-3-tier
+    - clean-3-tier
