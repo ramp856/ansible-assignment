@@ -27,7 +27,7 @@
     shell: "chmod +x /mnt/order_svc.sh /mnt/bin/jq"
   - name: create credentials.rc
     template:
-    src: credentials.rc.j2
+    src: /mnt/credentials.rc.j2
     dest: "/mnt/credentials.rc"
   - name: Deploy production env in OPENTLC
     shell: "source /mnt/credentials.rc && /mnt/order_svc.sh -c 'OPENTLC Automation' -i '3 Tier Application' -t 1 -y"
