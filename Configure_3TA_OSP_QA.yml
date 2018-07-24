@@ -1,6 +1,6 @@
 ---
 - name: Gather Facts
-  hosts: jumpbox 
+  hosts: bastion 
   become: yes
   tasks:
   - name: Gather facts
