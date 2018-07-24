@@ -1,6 +1,6 @@
 ---
 - name: Provision Production env
-  hosts: jumpbox
+  hosts: tag_AnsibleGroup_bastion
   gather_facts: true
   become: yes
   tasks: 
