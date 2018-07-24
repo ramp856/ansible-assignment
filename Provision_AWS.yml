@@ -30,7 +30,7 @@
       src: templates/credentials.rc.j2
       dest: "/tmp/credentials.rc"
   - name: Deploy production env in OPENTLC
-    shell: "source /tmp/credentials.rc && /tmp/order_svc.sh -c 'OPENTLC Automation' -i '3 Tier Application' -t 1 -y"
+    shell: "source /tmp/credentials.rc && /tmp/order_svc.sh -c 'OPENTLC Automation' -i 'Three Tier Application' -t 1 -y"
   - name: Pause for 15 min for the env to come up
     pause:
       minutes: 15
