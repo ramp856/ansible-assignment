@@ -10,27 +10,27 @@
       state: latest
   - name: create bin directory
     file: 
-      path: "/mnt/bin"
+      path: "/tmp/bin"
       state: directory
       mode: 0755
   - name: download common.sh and order_svc.sh
     get_url:
       url: http://www.opentlc.com/download/ansible_bootcamp/scripts/{{item }}
-      dest: "/mnt/{{ item }}"
+      dest: "/tmp/{{ item }}"
       mode: 0755
     with_items:
     - common.sh
     - order_svc.sh
   - name: download jq-linux64
-    shell: "wget http://www.opentlc.com/download/ansible_bootcamp/scripts/jq-linux64 -O /mnt/bin/jq"
+    shell: "wget http://www.opentlc.com/download/ansible_bootcamp/scripts/jq-linux64 -O /tmp/bin/jq"
   - name: change mode +x
-    shell: "chmod +x /mnt/order_svc.sh /mnt/bin/jq"
+    shell: "chmod +x /tmp/order_svc.sh /tmp/bin/jq"
   - name: create credentials.rc
     template:
-      src: /mnt/credentials.rc.j2
-      dest: "/mnt/credentials.rc"
+      src: /tmp/credentials.rc.j2
+      dest: "/tmp/credentials.rc"
   - name: Deploy production env in OPENTLC
-    shell: "source /mnt/credentials.rc && /mnt/order_svc.sh -c 'OPENTLC Automation' -i '3 Tier Application' -t 1 -y"
+    shell: "source /tmp/credentials.rc && /tmp/order_svc.sh -c 'OPENTLC Automation' -i '3 Tier Application' -t 1 -y"
   - name: Pause for 15 min for the env to come up
     pause:
       minutes: 15
