@@ -2,6 +2,7 @@
 - name: Gather Facts
   hosts: bastion 
   become: yes
+  become_user: sudo
   tasks:
   - name: Gather facts
     include_role: 
