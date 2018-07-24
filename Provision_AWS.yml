@@ -1,6 +1,6 @@
 ---
 - name: Provision Production env
-  hosts: tag_AnsibleGroup_bastion
+  hosts: bastion
   gather_facts: true
   become: yes
   tasks: 
