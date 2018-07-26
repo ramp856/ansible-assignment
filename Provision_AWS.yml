@@ -26,10 +26,10 @@
     - order_svc.sh
 
   - name: Download jq-linux64
-    shell: "wget http://www.opentlc.com/download/ansible_bootcamp/scripts/jq-linux64 -O {{ ansible_env.HOME }}/bin/jq"
+    command: "wget http://www.opentlc.com/download/ansible_bootcamp/scripts/jq-linux64 -O {{ ansible_env.HOME }}/bin/jq"
 
   - name: Change mod - order_svc.sh
-    shell: "chmod +x {{ ansible_env.HOME }}/order_svc.sh {{ ansible_env.HOME }}/bin/jq"
+    command: "chmod +x {{ ansible_env.HOME }}/order_svc.sh {{ ansible_env.HOME }}/bin/jq"
 
   - name: Create credential.rc
     template:
@@ -37,7 +37,7 @@
       dest: "{{ ansible_env.HOME }}/credential.rc"
 
   - name: Deploy production environment in OpenTLC
-    shell: "source {{ ansible_env.HOME }}/credential.rc && {{ ansible_env.HOME }}/order_svc.sh -c 'OPENTLC Automation' -i 'Three Tier Application' -t 1 -y"
+    command: "source {{ ansible_env.HOME }}/credential.rc && {{ ansible_env.HOME }}/order_svc.sh -c 'OPENTLC Automation' -i 'Three Tier Application' -t 1 -y"
 
   - name: Pause for 15 minutes to wait for production environment to be provisioned in AWS before ending play
     pause:
