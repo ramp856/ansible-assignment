@@ -1,5 +1,5 @@
 ---
-- hosts: tag_AnsibleGroup_bastion
+- hosts: bastion
   name: create directory  
   gather_facts: true
   become: yes
