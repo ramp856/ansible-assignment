@@ -23,5 +23,5 @@
       tower_username: "{{ tower_username }}"
       tower_password: "{{ tower_password }}"
       kind: ssh
-      username: "{{ three_tier_user }}"
+      username: ec2-user
       ssh_key_data: "/root/.ssh/{{ hostvars[inventory_hostname]['ec2_tag_Project'] | regex_replace('three-tier-app-','') }}key.pem"
