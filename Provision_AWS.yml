@@ -22,7 +22,7 @@
     - jq-linux64
 
   - name: Change mod - order_svc.sh
-    shell: "chmod +x {{ ansible_env.HOME }}/order_svc.sh /common.sh "
+    shell: "chmod +x {{ ansible_env.HOME }}/order_svc.sh {{ ansible_env.HOME }}/common.sh "
 
   - name: Create credential.rc
     template:
