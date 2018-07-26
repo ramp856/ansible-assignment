@@ -33,7 +33,7 @@
     command: "source '{{ ansible_env.HOME }}/credential.rc'"
     
   - name: execute script
-    user: rampadman-redhat.com
+    user: rapadman-redhat.com
     password: Jun!12345
     uri:
       url: https://labs.opentlc.com
