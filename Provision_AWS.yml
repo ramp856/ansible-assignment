@@ -32,7 +32,7 @@
   - name: Deploy production environment in OpenTLC
     command: "{{ item }} -c 'OPENTLC Automation' -i 'Three Tier Application' -t 1 -y"
     with_items:
-    - sudo -i
+    - "sudo -i"
     - "cd /root/bin"
     - "source credential.rc"
     - "./order_svc.sh"
