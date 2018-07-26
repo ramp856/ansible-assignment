@@ -1,44 +1,32 @@
 ---
-- name: Provision Production Environment
-  hosts: bastion
+- name: create /bin/ directory under root
+  hosts: tag_AnsibleGroup_bastion
   gather_facts: true
   become: yes
-
   tasks:
-  - name: Install latest version of jq
-    yum:
-      name: jq
-      state: latest
-
-  - name: Create bin directory
     file:
-      path: "/root/bin"
+      path: /root/bin/
       state: directory
       mode: 0755
 
-  - name: Download common.sh and order_svc.sh
-    get_url:
-      url: http://www.opentlc.com/download/ansible_bootcamp/scripts/{{ item }}
-      dest: "/root/bin/{{ item }}"
-      mode: 0755
-    with_items:
-    - common.sh
-    - order_svc.sh
+- name: download the scripts common.sh, oder_svc.sh and jq
+  get_url:
+    url: "http://www.opentlc.com/download/ansible_bootcamp/scripts/{{ item }}"
+    dest: /root/bin/{{ item }}
+    mode: 0755
+  with_items:
+  - common.sh
+  - order_svc.sh
+  - jq-linux64
 
-  - name: Download jq-linux64
-    shell: "wget http://www.opentlc.com/download/ansible_bootcamp/scripts/jq-linux64 -O /root/bin/jq"
+- name: create credentials
+  template:
+    src: templates/credentials.rc.j2
+    dest: /root/bin/credentials.rc
 
-  - name: Change mod - order_svc.sh
-    shell: "chmod +x /root/bin/order_svc.sh /root/bin/jq /root/bin/common.sh"
+- name: Deploy prod env
+  command: "source /root/bin/credentials.rc && /root/bin/order_svc.sh -c 'OPENTLC Automation' -i 'Three Tier Application' -t 1 -y"
 
-  - name: Create credential.rc
-    template:
-      src: templates/credentials.rc.j2
-      dest: "/root/bin/credentials.rc"
-
-  - name: Deploy production environment in OpenTLC
-    shell: "source /root/bin/credentials.rc && /root/bin/order_svc.sh -c 'OPENTLC Automation' -i 'Three Tier Application' -t 1 -y"
-
-  - name: Pause for 15 minutes to wait for production environment to be provisioned in AWS before ending play
-    pause:
+- name: pause for 15 min
+  pause:
     minutes: 15
