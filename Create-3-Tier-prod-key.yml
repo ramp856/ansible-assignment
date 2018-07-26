@@ -1,6 +1,6 @@
 ---
 - name: Fetch Private Key from Bastion
-  hosts: tag_AnsibleGroup_bastions
+  hosts: bastion
   gather_facts: true
   become: yes
 
