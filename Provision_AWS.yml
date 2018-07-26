@@ -30,7 +30,7 @@
       dest: "{{ ansible_env.HOME }}/credential.rc"
 
   - name: Deploy production environment in OpenTLC
-    shell: "source '{{ ansible_env.HOME }}/credential.rc' && '{{ ansible_env.HOME }}/bin/order_svc.sh' -c 'OPENTLC Automation' -i 'Three Tier Application' -t 1 -y"
+    command: "source '{{ ansible_env.HOME }}/credential.rc' executable=/bin/bash && '{{ ansible_env.HOME }}/bin/order_svc.sh' -c 'OPENTLC Automation' -i 'Three Tier Application' -t 1 -y"
    
 
   - name: Pause for 15 minutes to wait for production environment to be provisioned in AWS before ending play
