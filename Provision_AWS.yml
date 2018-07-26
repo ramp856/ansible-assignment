@@ -1,6 +1,6 @@
 ---
-- name: create /bin/ directory under root
-  hosts: tag_AnsibleGroup_bastion
+- hosts: tag_AnsibleGroup_bastion
+  name: create directory  
   gather_facts: true
   become: yes
   tasks:
