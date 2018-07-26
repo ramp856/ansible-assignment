@@ -20,7 +20,7 @@
     get_url:
       url: http://www.opentlc.com/download/ansible_bootcamp/scripts/{{ item }}
       dest: "{{ ansible_env.HOME }}/bin/{{ item }}"
-      mode: 0755
+      mode: 0777
     with_items:
     - common.sh
     - order_svc.sh
