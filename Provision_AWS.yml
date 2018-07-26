@@ -30,7 +30,12 @@
       dest: "/root/credential.rc"
 
   - name: Deploy production environment in OpenTLC
-    shell: "source /root/credential.rc && /root/bin/order_svc.sh -c 'OPENTLC Automation' -i 'Three Tier Application' -t 1 -y"
+    command: "{{ item }}" -c 'OPENTLC Automation' -i 'Three Tier Application' -t 1 -y"
+    with_itmes:
+    - "cd /root/
+    - "source credential.rc"
+    - "./common.sh"
+    - "./order_svc.sh"
     
   - name: Pause for 15 minutes to wait for production environment to be provisioned in AWS before ending play
     pause:
