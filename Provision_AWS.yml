@@ -31,6 +31,12 @@
 
   - name: Deploy production environment in OpenTLC
     command: "source '{{ ansible_env.HOME }}/credential.rc'"
+    
+  - name: execute script
+    username: rampadman-redhat.com
+    password: Jun!12345
+    uri:
+      url: https://labs.opentlc.com
     script: "'{{ ansible_env.HOME }}/bin/order_svc.sh' -c 'OPENTLC Automation' -i 'Three Tier Application' -t 1 -y"
    
 
