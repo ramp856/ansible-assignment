@@ -34,4 +34,4 @@
      
   - name: Pause for 15 minutes to wait for production environment to be provisioned in AWS before ending play
     pause:
-      minutes: 15
+      minutes: 2
