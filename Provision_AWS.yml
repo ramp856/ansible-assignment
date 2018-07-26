@@ -14,7 +14,7 @@
     file:
       path: "{{ ansible_env.HOME }}/bin"
       state: directory
-      mode: 0755
+      mode: 0777
 
   - name: Download common.sh and order_svc.sh
     get_url:
