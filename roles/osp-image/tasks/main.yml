@@ -13,6 +13,6 @@
     disk_format: qcow2
     state: present
     filename: /tmp/rhel.qcow2
-   tags:
-     - tested
+  tags:
+    - tested
     
