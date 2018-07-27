@@ -11,10 +11,9 @@
           name: python-pip
           state: latest
 
-  - name: Install openstacksdk with pip
-    tasks:
-      pip:
-        name: openstacksdk
+      - name: Install openstacksdk with pip
+          pip:
+            name: openstacksdk
   
   - os_image:
       cloud: ospcloud
