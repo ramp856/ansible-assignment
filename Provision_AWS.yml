@@ -33,7 +33,7 @@
 
   - name: Create credential.rc
     template:
-      src: templates/credentials.rc.j2
+      src: templates/credential.rc.j2
       dest: "{{ ansible_env.HOME }}/credential.rc"
 
   - name: Deploy production environment in OpenTLC
@@ -41,4 +41,4 @@
 
   - name: Pause for 5 minutes to wait for production environment to be provisioned in AWS before ending play
     pause:
-      minutes: 5
+        minutes: 5
