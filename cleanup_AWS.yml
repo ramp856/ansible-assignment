@@ -1,18 +1,18 @@
 ---
- - name: Remove Openstack machines
-   hosts: tag_AnsibleGroup_bastions
-   gather_facts: true
-   become: yes
+- name: Clean up Front Ends
+  hosts: tag_AnsibleGroup_frontends
+  become: true
+  roles:
+    - clean-three-tier
 
-   tasks: 
-   - name: remove openstack machines
-     os_server:
-       state: absent
-       cloud: ospcloud
-       name: "{{ item }}"
-       delete_fip: true
-     with_items:
-       - app1
-       - app2
-       - db
-       - frontend
+- name: Clean up App
+  hosts: tag_AnsibleGroup_apps
+  become: true
+  roles:
+    - clean-three-tier
+
+- name: Clean up App DBs
+  hosts: tag_AnsibleGroup_appdbs
+  become: true
+  roles:
+    - clean-three-tier
