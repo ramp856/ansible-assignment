@@ -1,6 +1,6 @@
 ---
 
-- hosts: bastion
+- hosts: tag_AnsibleGroup_bastions
   name: Provision Openstack Instances
   become: yes
   roles:
