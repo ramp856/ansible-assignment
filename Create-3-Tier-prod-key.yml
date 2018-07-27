@@ -24,4 +24,4 @@
       tower_password: r3dh4t1!
       kind: ssh
       username: ec2-user
-      ssh_key_data: "/root/.ssh/{{ hostvars[inventory_hostname]['ec2_tag_Project'] | regex_replace('three-tier-app-','') }}key.pem"
+      ssh_key_data: "/root/.ssh/{{ hostvars[workstation-ede7.rhpds.opentlc.com]['ec2_tag_Project'] | regex_replace('three-tier-app-','') }}key.pem"
