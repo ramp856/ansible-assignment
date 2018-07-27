@@ -5,12 +5,12 @@
   become: yes
   tasks:
   - name: install pip
-      yum: 
-        name: python-pip
-        state: latest
+    yum: 
+      name: python-pip
+      state: latest
   - name: install openstack.sdk
-      pip:
-        name: openstacksdk
+    pip:
+      name: openstacksdk
   roles:
      - osp-image
      - osp-network
