@@ -3,8 +3,6 @@
     get_url:
       url: http://www.opentlc.com/download/osp_advanced_networking/rhel-guest-image-7.2-20151102.0.x86_64.qcow2
       dest: /tmp/rhel.qcow2
-    tags:
-      - tested
     tasks:
       - name: install pip
         yum:
@@ -13,8 +11,10 @@
 
       - name: Install openstacksdk with pip
         pip:
-          name: openstacksdk
-            
+          name: openstacksdk  
+    tags:
+      - tested
+                
   - os_image:
       cloud: ospcloud
       name: rhel-guest
