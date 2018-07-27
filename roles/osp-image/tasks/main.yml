@@ -7,14 +7,14 @@
       - tested
   - name: install necessary packages
     tasks:
-  - name: Install python-pip
-    yum:
-     name: python-pip
-     state: latest
+      yum:
+       name: python-pip
+       state: latest
 
   - name: Install openstacksdk with pip
-    pip:
-      name: openstacksdk
+    tasks:
+      pip:
+        name: openstacksdk
   
   - os_image:
       cloud: ospcloud
