@@ -1,6 +1,6 @@
 ---
  - name: Remove Openstack machines
-   hosts: bastion
+   hosts: tag_AnsibleGroup_bastions
    gather_facts: true
    become: yes
 
