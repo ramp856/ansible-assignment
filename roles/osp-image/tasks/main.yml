@@ -12,9 +12,9 @@
           state: latest
 
       - name: Install openstacksdk with pip
-          pip:
-            name: openstacksdk
-  
+        pip:
+          name: openstacksdk
+            
   - os_image:
       cloud: ospcloud
       name: rhel-guest
