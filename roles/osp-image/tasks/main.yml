@@ -7,9 +7,10 @@
       - tested
   - name: install necessary packages
     tasks:
-      yum:
-       name: python-pip
-       state: latest
+      - name: install pip
+        yum:
+          name: python-pip
+          state: latest
 
   - name: Install openstacksdk with pip
     tasks:
