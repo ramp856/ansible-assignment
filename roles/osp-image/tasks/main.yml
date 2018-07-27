@@ -5,7 +5,6 @@
       dest: /tmp/rhel.qcow2
     tags:
       - tested
-  - name: install necessary packages
     tasks:
       - name: install pip
         yum:
