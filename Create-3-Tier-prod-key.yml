@@ -19,9 +19,9 @@
       name: Three_Tier_Prod_Key
       organization: Default
       state: present
-      tower_host: tower1.db55.example.opentlc.com
-      tower_username: admin
-      tower_password: r3dh4t1!
+      tower_host: <tower-hostname
+      tower_username: <tower-username
+      tower_password: <tower-password>
       kind: ssh
       username: ec2-user
       ssh_key_data: "/root/.ssh/{{ hostvars[inventory_hostname]['ec2_tag_Project'] | regex_replace('three-tier-app-','') }}key.pem"
