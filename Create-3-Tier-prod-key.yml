@@ -20,7 +20,7 @@
       organization: Default
       state: present
       tower_host: <tower-hostname>
-      tower_username: <tower-username
+      tower_username: <tower-username>
       tower_password: <tower-password>
       kind: ssh
       username: ec2-user
