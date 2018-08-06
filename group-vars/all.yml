@@ -2,7 +2,7 @@
 admin_project_password: <admin-password>
 three_tier_user: ec2-user
 tower_domain_path: example.opentlc.com
-tower_usernmame: <tower-username
-tower_password: <tower-password
-tower_guid: 9748
+tower_usernmame: <tower-username>
+tower_password: <tower-password>
+tower_guid: db55
 tower_node: tower1
